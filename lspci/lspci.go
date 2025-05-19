@@ -86,14 +86,18 @@ func FindBin(binary string) (string, error) {
 	locations := []string{"/sbin", "/usr/sbin", "/usr/local/sbin", "/usr/bin"}
 
 	for _, path := range locations {
+		fmt.Println(path)
 		lookup := path + "/" + binary
+		fmt.Println(lookup)
 		fileInfo, err := os.Stat(path + "/" + binary)
 
 		if err != nil {
+			fmt.Println(err)
 			continue
 		}
 
 		if !fileInfo.IsDir() {
+			fmt.Println("Found it")
 			return lookup, nil
 		}
 	}
